@@ -5,20 +5,17 @@ import { ProductItem } from './ProductItem'
 interface ProductProps {
   id: number
   price: number
+  priceFormatted: string
   title: string
 }
 
 interface SearchResultProps {
+  totalPrice: number
   results: ProductProps[]
   onAddToWishlist: (id: number) => void
 }
 
-export function SearchResults({ results, onAddToWishlist }: SearchResultProps) {
-  const totalPrice = useMemo(() => {
-    return results.reduce((total, product) => {
-      return total + product.price
-    }, 0)
-  }, [results])
+export function SearchResults({ totalPrice, results, onAddToWishlist }: SearchResultProps) {
 
   return (
     <div>
